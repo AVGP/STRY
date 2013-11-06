@@ -1,0 +1,74 @@
+@keyframes flipIn {
+  from {
+    transform: rotate3d(1, 0, 1, 0deg);      
+  }
+    
+  to {
+    transform: rotate3d(0, 1, -0.05, 180deg);
+  }
+}
+
+@-webkit-keyframes flipIn {
+  from {
+    -webkit-transform: rotate3d(1, 0, 1, 0deg);      
+  }
+    
+  to {
+    -webkit-transform: rotate3d(0, 1, -0.05, 180deg);
+  }
+}
+
+@-webkit-keyframes flipOut {
+  from {
+    -webkit-transform: rotate3d(0, 1, -0.05, 180deg);
+  }
+  
+  to {
+    -webkit-transform: rotate3d(1, 0, 1, 0deg);      
+  }
+}
+
+@-moz-keyframes flipIn {
+  from {
+    -moz-transform: rotate3d(1, 1, 1, 0deg);      
+  }
+    
+  to {
+    -moz-transform: rotate3d(0, 1, -0.05, 180deg); /* ; */
+  }
+}
+
+
+.page {
+  -webkit-transform-origin: left top;
+/*  -webkit-transform-style:  preserve-3d; */
+  -moz-transform-origin:    left top;
+/*  -moz-transform-style:     preserve-3d; */
+  -ms-transform-origin:     left top;
+  -o-transform-origin:      left top;
+  transform-origin:         left top;
+/*  transform-style:          preserve-3d; */
+}
+
+.prev {
+  -webkit-animation:             flipOut 0.5s;
+  /*-webkit-animation-direction:   reverse; */
+  -moz-animation:                flipIn 1.5s;
+  -moz-animation-direction:      reverse;
+  animation:                     flipIn 0.5s;
+  animation-direction:           reverse;
+}
+
+.flipped {
+  -webkit-animation: flipIn 0.5s;
+  -webkit-transform: rotate3d(0, 1, 0, 180deg);
+  -moz-animation:    flipIn 1.5s;
+  -moz-transform:    rotate3d(0, 1, 0, 180deg);
+  -o-animation:      flipIn 0.5s;
+  -o-transform:      rotate3d(0, 1, 0, 180deg);
+  -ms-animation:     flipIn 0.5s;
+  -ms-transform:     rotate3d(0, 1, 0, 180deg);
+  animation:         flipIn 0.5s;
+  transform:         rotate3d(0, 1, 0, 180deg);
+ 
+}

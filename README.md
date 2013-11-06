@@ -1,18 +1,11 @@
+# STRY
+(pronounced "story")
 
-    ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+# What's this?
+Right now? Not much more than just a test baloon to play around with 3D transitions in a mobile context.
 
+It will allow you to feed stuff from GetPocket into your own "channel" (think of a magazin, really) to share with others.
 
-Hi there! Welcome to Cloud9 IDE!
+# License?
 
-To get you started, create some files, play with the terminal,
-or visit http://docs.c9.io for our documentation.
-If you want, you can also go watch some training videos at
-http://www.youtube.com/user/c9ide.
-
-Happy coding!
-The Cloud9 IDE team
+It's licensed under the IDGAFWYDWI-License. I don't give a fuck what you do with it. Go ahead :)

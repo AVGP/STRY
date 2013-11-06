@@ -53,6 +53,7 @@ var performGesture = function(e) {
     }
 };
 
+/*
 document.body.addEventListener("touchstart", function(e) {
     e.preventDefault();
     if(!e.touches[0]) return;
@@ -60,7 +61,7 @@ document.body.addEventListener("touchstart", function(e) {
 });
 document.body.addEventListener("touchend", performGesture);
 document.body.addEventListener("touchleave", performGesture);
-
+/*
 document.body.addEventListener("click", function(e) {
   if(e.clientX > (window.innerWidth / 2)) {
     flipForward();
@@ -68,16 +69,35 @@ document.body.addEventListener("click", function(e) {
     flipBack();
   }
 });
-
-/*
-var elems = document.querySelectorAll("div.page");
-
-for(var i=0; i<elems.length; i++) {
-  (function(elem) {
-    elem.addEventListener("click", function(e) {
-      console.log(elem)
-      elem.className += " flipped";
-    });
-  })(elems[i]);
-}
 */
+
+var startX = 0, pressed = false, touchID = null;
+document.body.addEventListener("touchstart", function(e) {
+  e.preventDefault();
+  startX = e.touches[0].screenX;
+  touchID = e.touches[0].identifier;
+  pressed = true;
+});
+
+document.body.addEventListener("touchend", function(e) {
+  e.preventDefault();
+    
+  pressed = false;
+  var diff = 180.0 * (Math.min(startX - e.changedTouches[0].screenX, 200) / 200.0);
+  if(diff > -45 && diff < 0) {
+    document.querySelector(".current").style.webkitTransform = "rotateY(0deg)";
+  } else if(diff < -45) {
+    document.querySelector(".current").style.webkitTransform = "rotateY(180deg)";
+    flipForward();
+  } else {
+    flipBack();
+  }
+});
+
+document.body.addEventListener("touchmove", function(e) {
+  e.preventDefault();
+
+  var diff = 180.0 * (Math.min(e.changedTouches[0].screenX - startX, 200) / 200.0);
+  console.log(diff);
+  document.querySelector(".current").style.webkitTransform = "rotateY(" + diff + "deg)";
+});

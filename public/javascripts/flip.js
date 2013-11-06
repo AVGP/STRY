@@ -8,6 +8,9 @@ var SWIPE_THRESHOLD = 50;
 
 var flipForward = function() {
   var currentPage = document.querySelector(".current");
+  
+  if(!currentPage) return;
+  
   currentPage.classList.toggle("current");
   currentPage.classList.toggle("flipped");
   currentPage.classList.remove("prev");
@@ -24,6 +27,8 @@ var flipForward = function() {
 var flipBack = function() {
   var currentPage  = document.querySelector(".current");
   var previousPage = document.querySelectorAll(".flipped")[0];
+
+  if(!previousPage) return;
 
   currentPage.classList.toggle("current");
 
@@ -56,7 +61,13 @@ document.body.addEventListener("touchstart", function(e) {
 document.body.addEventListener("touchend", performGesture);
 document.body.addEventListener("touchleave", performGesture);
 
-document.body.addEventListener("click", flipForward);
+document.body.addEventListener("click", function(e) {
+  if(e.clientX > (window.innerWidth / 2)) {
+    flipForward();
+  } else {
+    flipBack();
+  }
+});
 
 /*
 var elems = document.querySelectorAll("div.page");

@@ -51,7 +51,7 @@
 }
 
 .prev {
-  -webkit-animation:             flipOut 0.5s;
+/*  -webkit-animation:             flipOut 0.5s;
   /*-webkit-animation-direction:   reverse;
   -moz-animation:                flipIn 1.5s;
   -moz-animation-direction:      reverse;

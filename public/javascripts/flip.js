@@ -1,8 +1,8 @@
-/*
+
 console.log = function(msg) {
     document.getElementById("console").innerHTML += "<p>" + msg + "<p>";
 }
-*/
+
 var gestures = {};
 var SWIPE_THRESHOLD = 50;
 
@@ -10,7 +10,7 @@ var flipForward = function() {
   var currentPage = document.querySelector(".current");
   
   if(!currentPage) return;
-  
+  console.log("FWD");
   currentPage.classList.toggle("current");
   currentPage.classList.toggle("flipped");
   currentPage.classList.remove("prev");
@@ -29,7 +29,7 @@ var flipBack = function() {
   var previousPage = document.querySelectorAll(".flipped")[0];
 
   if(!previousPage) return;
-
+console.log("BACK");
   currentPage.classList.toggle("current");
 
   previousPage.classList.toggle("current");
@@ -83,21 +83,38 @@ document.body.addEventListener("touchend", function(e) {
   e.preventDefault();
     
   pressed = false;
-  var diff = 180.0 * (Math.min(startX - e.changedTouches[0].screenX, 200) / 200.0);
-  if(diff > -45 && diff < 0) {
+  var diff = 180.0 * (Math.min(startX - e.changedTouches[0].screenX, 400) / 400.0);
+  console.log(diff);
+  if(diff < 65.0 && diff > 0) {
     document.querySelector(".current").style.webkitTransform = "rotateY(0deg)";
-  } else if(diff < -45) {
+  } else if(diff > 65.0) {
     document.querySelector(".current").style.webkitTransform = "rotateY(180deg)";
     flipForward();
-  } else {
-    flipBack();
+  } else if(diff < -30.0) {
+    var previousPage = document.querySelectorAll(".flipped")[0];
+    if(previousPage) {
+      previousPage.style.webkitTransform = "rotateY(0deg)";
+      flipBack();
+    }
+  } else if(diff < 0.0) {
+    var previousPage = document.querySelectorAll(".flipped")[0];
+    if(previousPage) {
+      previousPage.style.webkitTransform = "rotateY(180deg)";
+    }
   }
 });
 
 document.body.addEventListener("touchmove", function(e) {
   e.preventDefault();
 
-  var diff = 180.0 * (Math.min(e.changedTouches[0].screenX - startX, 200) / 200.0);
-  console.log(diff);
-  document.querySelector(".current").style.webkitTransform = "rotateY(" + diff + "deg)";
+  var diff = 180.0 * (Math.min(startX - e.changedTouches[0].screenX, 400) / 400.0);
+//  console.log(diff);
+  if(diff > 0.0) {
+    document.querySelector(".current").style.webkitTransform = "rotateY(" + diff + "deg)";
+  } else if(diff < 0.0) {
+    var previousPage = document.querySelectorAll(".flipped")[0];
+    if(previousPage) {
+      previousPage.style.webkitTransform = "rotateY(" + (90 + diff) + "deg)";
+    }
+  } 
 });
